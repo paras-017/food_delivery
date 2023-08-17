@@ -4,8 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import * as Icon from "react-native-feather";
 import { themeColors } from '../theme';
 import Categories from '../components/Categories';
+import FeatureRow from '../components/FeaturedRow';
+import { featured} from '../constants';
+
 
 const HomeScreen = () => {
+  const featuredArr = [featured,featured,featured]
   return (
     <SafeAreaView className='bg-white'>
       {/*-------------INPUT and SLIDER------------- */}
@@ -26,7 +30,20 @@ const HomeScreen = () => {
 
       {/* -------------MAIN--------------------- */}
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom:20}}>
+        {/*-------CATEGORIES-------*/}
         <Categories/>
+
+        {/*-------FEATURED-------*/}
+        <View className='mt-5'>
+          {
+          featuredArr.map((item,index)=>{
+           return (
+            <FeatureRow key={index} title={item.title} restaurants={item.restaurants} description={item.description}/>
+           )
+          })
+          }
+        </View>
+     
       </ScrollView>
     </SafeAreaView>
   )
